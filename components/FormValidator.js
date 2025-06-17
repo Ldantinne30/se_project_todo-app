@@ -1,0 +1,3 @@
+FormValidator = {
+  constructor(settings, formElement) {},
+};
