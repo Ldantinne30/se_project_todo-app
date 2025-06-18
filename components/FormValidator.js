@@ -52,15 +52,6 @@ class FormValidator {
   }
 
   resetValidation() {
-    this._inputList.forEach((inputElement) => {
-      const errorElement = this._formElement.querySelector(
-        `#${inputElement.id}-error`
-      );
-      errorElement.textContent = "";
-      errorElement.classList.remove(this._settings.errorClass);
-      inputElement.classList.remove(this._settings.inputErrorClass);
-    });
-
     this._formElement.reset();
     this._toggleButtonState();
   }
