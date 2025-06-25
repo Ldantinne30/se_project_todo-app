@@ -6,11 +6,11 @@ class TodoCounter {
     this._updateText();
   }
 
-  updateCompleted = (increment) => {
-    if (increment) {
-      this._completed -= 1;
-    } else {
+  updateCompleted = (isCompleted) => {
+    if (isCompleted) {
       this._completed += 1;
+    } else {
+      this._completed -= 1;
     }
     this._updateText();
   };

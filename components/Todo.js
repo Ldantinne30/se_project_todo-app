@@ -11,20 +11,14 @@ export default class Todo {
       .querySelector(".todo__delete-btn")
       .addEventListener("click", () => {
         this._element.remove();
-
         this._onDelete(this._data.completed);
       });
 
     this._checkboxEl = this._element.querySelector(".todo__completed");
     this._checkboxEl.addEventListener("change", () => {
-      const wasCompleted = this._data.completed;
-      const isCompleted = this._checkboxEl.checked;
+      this._onToggle(!this._data.completed);
 
-      this._data.completed = isCompleted;
-
-      if (this._onToggle) {
-        this._onToggle(wasCompleted, isCompleted);
-      }
+      this._data.completed = !this._data.completed;
     });
   }
 

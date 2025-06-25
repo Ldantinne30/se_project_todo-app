@@ -44,12 +44,8 @@ function generateTodo(data) {
         counter.updateCompleted(false);
       }
     },
-    onToggle: (wasCompleted, isCompleted) => {
-      if (wasCompleted && !isCompleted) {
-        counter.updateCompleted(true);
-      } else if (!wasCompleted && isCompleted) {
-        counter.updateCompleted(false);
-      }
+    onToggle: (isCompleted) => {
+      counter.updateCompleted(isCompleted);
     },
   });
   return todo.getView();
