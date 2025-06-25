@@ -1,7 +1,9 @@
 export default class Todo {
-  constructor(data, selector) {
+  constructor(data, selector, { onDelete, onToggle }) {
     this._data = data;
     this._selector = selector;
+    this._onDelete = onDelete;
+    this._onToggle = onToggle;
   }
 
   _setEventListeners() {
@@ -9,11 +11,20 @@ export default class Todo {
       .querySelector(".todo__delete-btn")
       .addEventListener("click", () => {
         this._element.remove();
+
+        this._onDelete(this._data.completed);
       });
 
     this._checkboxEl = this._element.querySelector(".todo__completed");
     this._checkboxEl.addEventListener("change", () => {
-      this._data.completed = this._checkboxEl.checked;
+      const wasCompleted = this._data.completed;
+      const isCompleted = this._checkboxEl.checked;
+
+      this._data.completed = isCompleted;
+
+      if (this._onToggle) {
+        this._onToggle(wasCompleted, isCompleted);
+      }
     });
   }
 
