@@ -33,10 +33,7 @@ addTodoPopup.setEventListeners();
 
 const section = new Section({
   items: initialTodos,
-  renderer: (item) => {
-    const todo = generateTodo(item);
-    section.addItem(todo);
-  },
+  renderer: renderTodo,
   containerSelector: ".todos__list",
 });
 
