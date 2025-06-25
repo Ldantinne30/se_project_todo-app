@@ -31,9 +31,18 @@ const addTodoPopup = new PopupWithForm({
 });
 addTodoPopup.setEventListeners();
 
+const section = new Section({
+  items: initialTodos,
+  renderer: (item) => {
+    const todo = generateTodo(item);
+    section.addItem(todo);
+  },
+  containerSelector: ".todos__list",
+});
+
 const renderTodo = (item) => {
   const todo = generateTodo(item);
-  todosList.append(todo);
+  section.addItem(todo);
 };
 
 function generateTodo(data) {
@@ -51,19 +60,11 @@ function generateTodo(data) {
   return todo.getView();
 }
 
-const section = new Section({
-  items: initialTodos,
-  renderer: (item) => {
-    const todo = generateTodo(item);
-    todosList.append(todo);
-  },
-  containerSelector: ".todos__list",
-});
-
 section.renderItems();
 
 formValidator.enableValidation();
 
 addTodoButton.addEventListener("click", () => {
+  formValidator.resetValidation();
   addTodoPopup.open();
 });
